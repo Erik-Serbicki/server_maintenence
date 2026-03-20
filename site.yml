@@ -8,9 +8,15 @@
     apt:
       update_cache: yes
       upgrade: dist
-    changed_when: false
+    register: updates_result
     when: ansible_distribution == "Ubuntu"
   tasks:
+    - name: Print out rebooting message
+      tags: reboot
+      debug:
+        msg: "Updates applied to {{ ansible.hostname }}, rebooting the system"
+      when: updates_result.changed
     - name: Reboot the system
       tags: reboot
       reboot:
+      when: updates_result.changed
