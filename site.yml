@@ -16,7 +16,7 @@
     - name: Print out rebooting message
       tags: reboot
       debug:
-        msg: "Updates applied to {{ ansible.hostname }}, rebooting the system"
+        msg: "Updates applied to {{ inventory_hostname }}, rebooting the system"
       when: updates_result.changed
     - name: Reboot the system
       tags: reboot
