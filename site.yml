@@ -2,6 +2,8 @@
 
 - hosts: all
   become: true
+  vars_files:
+    - secrets.yml
   pre_tasks:
   - name: update repo cache (Ubuntu/Debian)
     tags: always,updates
